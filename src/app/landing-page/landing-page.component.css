@@ -5,7 +5,7 @@
   background-color: #ffffff;
   padding: 15px 30px;
   color: white;
-  
+
   .logo {
     font-size: 1.5rem;
     font-weight: bold;
@@ -50,13 +50,17 @@
     color: rgb(98, 98, 98);
   }
 
-  button {
+  .login-boton{
     background-color: #168BD9;
-    border-radius: 30%;
-    padding: 10px 20px;
-    color: #ffffff;
-    border-color: #ffffff;
+    border-radius: 20px;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    width: 130px;
   }
+
+
+
 }
 
 .landing-content2 {
@@ -82,18 +86,18 @@
     border-color: #168BD9;
     background-color: #ffffff;
   }
-  
+
   .card {
     text-align: left;
     margin: 50px;
     box-shadow: #000000;
     border-radius: 10%;
-  
+
     h3 {
       font-size: 1.7rem;
       color: #000000;
     }
-  
+
   }
 }
 
@@ -121,4 +125,12 @@
 
   }
 }
-
+.bot-boton{
+  background-color: #ffffff;
+  border-color: #168BD9;
+  border-radius: 20px;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+  width: 130px;
+}
