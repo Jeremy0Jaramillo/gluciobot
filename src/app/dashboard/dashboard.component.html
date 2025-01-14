@@ -30,25 +30,64 @@
   <div class="main-content">
     <!-- General Tab -->
     <div *ngIf="activeTab === 'general'" class="general-tab">
-      <h2>Dashboard</h2>
-      <p>Pacientes: {{ totalPatients }}</p>
       <h3>Agenda</h3>
-      <ul>
-        <tr *ngFor="let appointment of appointments">
-          <div class="agenda-content">
-            <div>
-              <strong>Nombre:</strong> {{ appointment.name }} <br />
-              <strong>Tipo:</strong> {{ appointment.type }} <br />
+      <button (click)="setActiveTab('appointments')"><strong>+</strong></button>
+      <div class="flex-general">
+        <ul>
+          <tr *ngFor="let appointment of appointments">
+            <div class="agenda-content">
+              <div class="first">
+                <strong>{{ appointment.name }} {{ appointment.surname }}</strong> <br />
+                {{ appointment.type }} <br />
+              </div>
+              <div class="second">
+                {{ appointment.context }} <br />
+              </div>
+              <div class="third">
+                <img src="../../assets/images/calendar.svg"/>
+                {{ appointment.date.toDate() | date: 'medium' }}
+              </div>
             </div>
-            <div>
-              <strong>Resúmen:</strong> {{ appointment.context }} <br />
-            </div>
-            <div>
-              <strong>Fecha:</strong> {{ appointment.date.toDate() | date: 'medium' }}
-            </div>
-          </div>
-        </tr>
-      </ul>
+          </tr>
+        </ul>
+        <div class="total-patients">
+          <img src="../../assets/images/FramePacientes.svg" alt="Patient Image" class="patient-image" />
+          <p>Pacientes: {{ totalPatients }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Appointment Form -->
+    <div *ngIf="activeTab === 'appointments'" class="appointments-tab">
+      <h2>Manage Appointments</h2>
+    
+      <!-- Appointment Form -->
+      <form (ngSubmit)="addAppointment()">
+        <label>Nombres: <input [(ngModel)]="newAppointment.name" name="name" required /></label>
+        <label>Apellidos: <input [(ngModel)]="newAppointment.surname" name="surname" required /></label>
+        <label>Cédula: <input [(ngModel)]="newAppointment.id" name="id" required /></label>
+        <label>Context: <input [(ngModel)]="newAppointment.context" name="context" required /></label>
+        <label>Email: <input [(ngModel)]="newAppointment.email" name="email" required /></label>
+        <label>Date: <input [(ngModel)]="newAppointment.date" name="date" type="date" required /></label>
+        <button type="submit">Add Appointment</button>
+      </form>
+    </div>
+
+    <!-- Appointment Form Modal -->
+    <div *ngIf="activeTab === 'showAddAppointmentForm'" class="modal">
+      <div class="modal-content">
+        <h3>Add Appointment</h3>
+        <form (ngSubmit)="addAppointment()">
+          <label>Name: <input [(ngModel)]="newAppointment.name" name="name" required /></label>
+          <label>Surname: <input [(ngModel)]="newAppointment.surname" name="surname" required /></label>
+          <label>ID: <input [(ngModel)]="newAppointment.id" name="id" required /></label>
+          <label>Type: <input [(ngModel)]="newAppointment.type" name="type" required /></label>
+          <label>Context: <input [(ngModel)]="newAppointment.context" name="context" required /></label>
+          <label>Email: <input [(ngModel)]="newAppointment.email" name="email" required /></label>
+          <button type="submit">Save</button>
+          <button type="button" (click)="closeAddAppointmentForm()">Cancel</button>
+        </form>
+      </div>
     </div>
 
     <!-- Patients Tab -->
@@ -112,8 +151,8 @@
       <h2>Perfil de Paciente</h2>
       <div class="profile-container">
         <div class="profile-left">
-          <img src="../../assets/images/istockphoto-1323167284-170667a.jpg" alt="Patient Image" class="patient-image" />
-          <h3>{{ selectedPatient?.name }}</h3>
+          <img src="../../assets/images/patient.jpg" alt="Patient Image" class="patient-image" />
+          <h3>{{ selectedPatient?.name }} {{ selectedPatient?.surname }}</h3>
         </div>
         <div class="profile-right">
           <p><strong>Sexo:</strong> {{ selectedPatient?.sex }}</p>
@@ -132,10 +171,10 @@
           </thead>
           <tbody>
             <tr>
-              <td>{{ selectedPatient?.id }}</td>
-              <td>{{ selectedPatient?.phone }}</td>
-              <td>{{ selectedPatient?.address }}</td>
-              <td>{{ selectedPatient?.email }}</td>
+              <td><strong>{{ selectedPatient?.id }}</strong></td>
+              <td><strong>{{ selectedPatient?.phone }}</strong></td>
+              <td><strong>{{ selectedPatient?.address }}</strong></td>
+              <td><strong>{{ selectedPatient?.email }}</strong></td>
             </tr>
           </tbody>
         </table>
@@ -177,6 +216,6 @@
         </div>        
       </div>
     </div>
+    -->
   </div>
 </div>
--->

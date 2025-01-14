@@ -22,6 +22,10 @@ export class DashboardComponent implements OnInit {
   selectedFile: File | null = null;
   extractedData: any = null;
   medicalRecord: any = null;
+  showAddAppointmentForm: boolean = false;
+  newAppointment: any = {};
+  currentDate: Date = new Date();
+  selectedDate: Date = new Date();
 
 
   constructor(private firestore: AngularFirestore, private auth: AngularFireAuth, private router: Router, private fileUploadService: FileUploadService) {}
@@ -31,11 +35,11 @@ export class DashboardComponent implements OnInit {
       if (user) {
         this.firestore.collection('doctors').doc(user.uid).valueChanges().subscribe(userData => {
           this.user = userData;
+          this.fetchAppointments();
         });
       }
     });
     this.fetchTotalPatients();
-    this.fetchAppointments();
     this.fetchPacients();
   }
 
@@ -46,9 +50,14 @@ export class DashboardComponent implements OnInit {
   }
 
   fetchAppointments() {
-    this.firestore.collection('appointments').valueChanges().subscribe((data) => {
-      this.appointments = data;
-    });
+    if (this.user?.email) {
+      this.firestore
+        .collection('appointments', ref => ref.where('docEmail', '==', this.user.email))
+        .valueChanges()
+        .subscribe(data => {
+          this.appointments = data;
+        });
+    }
   }
 
   fetchPacients() {
@@ -154,6 +163,28 @@ export class DashboardComponent implements OnInit {
       this.fetchPacients();
       this.extractedData = null; // Clear extracted data after saving
     });
-  }  
+  }
+  
+  openAddAppointmentForm() {
+    this.showAddAppointmentForm = true;
+    this.newAppointment = {};
+  }
+  
+  closeAddAppointmentForm() {
+    this.showAddAppointmentForm = false;
+  }
+  
+  addAppointment() {
+    if (this.user?.email) {
+      const appointmentData = { ...this.newAppointment, docEmail: this.user.email, date: this.selectedDate, type: 'Primera cita' };
+      this.firestore.collection('appointments').add(appointmentData).then(() => {
+        alert('Appointment added successfully');
+        this.newAppointment = {}; // Reset form
+        this.fetchAppointments();
+      });
+    }
+  }
+
+
   
 }

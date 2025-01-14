@@ -1,0 +1,57 @@
+[debug] [2025-01-14T09:25:27.122Z] ----------------------------------------------------------------------
+[debug] [2025-01-14T09:25:27.124Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\ASUS TUF\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2025-01-14T09:25:27.124Z] CLI Version:   13.29.1
+[debug] [2025-01-14T09:25:27.125Z] Platform:      win32
+[debug] [2025-01-14T09:25:27.125Z] Node Version:  v20.13.1
+[debug] [2025-01-14T09:25:27.125Z] Time:          Tue Jan 14 2025 04:25:27 GMT-0500 (Ecuador Time)
+[debug] [2025-01-14T09:25:27.125Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-01-14T09:25:27.129Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2025-01-14T09:25:27.208Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-01-14T09:25:27.209Z] > authorizing via signed-in user (jeremycuenta120@gmail.com)
+[debug] [2025-01-14T09:25:27.209Z] [iam] checking project gluciobot for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2025-01-14T09:25:27.209Z] Checked if tokens are valid: false, expires at: 1736363231007
+[debug] [2025-01-14T09:25:27.209Z] Checked if tokens are valid: false, expires at: 1736363231007
+[debug] [2025-01-14T09:25:27.209Z] > refreshing access token with scopes: []
+[debug] [2025-01-14T09:25:27.210Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-01-14T09:25:27.210Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-01-14T09:25:27.500Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2025-01-14T09:25:27.500Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2025-01-14T09:25:27.562Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-01-14T09:25:27.562Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-01-14T09:25:27.569Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/gluciobot:testIamPermissions [none]
+[debug] [2025-01-14T09:25:27.569Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/gluciobot:testIamPermissions x-goog-quota-user=projects/gluciobot
+[debug] [2025-01-14T09:25:27.569Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/gluciobot:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]}
+[debug] [2025-01-14T09:25:28.466Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/gluciobot:testIamPermissions 200
+[debug] [2025-01-14T09:25:28.466Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/gluciobot:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]}
+[debug] [2025-01-14T09:25:28.466Z] Checked if tokens are valid: true, expires at: 1736850326562
+[debug] [2025-01-14T09:25:28.467Z] Checked if tokens are valid: true, expires at: 1736850326562
+[debug] [2025-01-14T09:25:28.467Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/gluciobot/serviceAccounts/gluciobot@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2025-01-14T09:25:28.467Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/gluciobot/serviceAccounts/gluciobot@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2025-01-14T09:25:29.344Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/gluciobot/serviceAccounts/gluciobot@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2025-01-14T09:25:29.344Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/gluciobot/serviceAccounts/gluciobot@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2025-01-14T09:25:29.344Z] Checked if tokens are valid: true, expires at: 1736850326562
+[debug] [2025-01-14T09:25:29.344Z] Checked if tokens are valid: true, expires at: 1736850326562
+[debug] [2025-01-14T09:25:29.344Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/gluciobot [none]
+[debug] [2025-01-14T09:25:29.913Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/gluciobot 200
+[debug] [2025-01-14T09:25:29.913Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/gluciobot {"projectId":"gluciobot","projectNumber":"505352236961","displayName":"gluciobot","name":"projects/gluciobot","resources":{"hostingSite":"gluciobot"},"state":"ACTIVE","etag":"1_7532ec81-9169-4bec-abd5-0a0dd235533f"}
+[debug] [2025-01-14T09:25:33.292Z] Checked if tokens are valid: true, expires at: 1736850326562
+[debug] [2025-01-14T09:25:33.292Z] Checked if tokens are valid: true, expires at: 1736850326562
+[debug] [2025-01-14T09:25:33.292Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/gluciobot/sites pageToken=&pageSize=10
+[debug] [2025-01-14T09:25:34.430Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/gluciobot/sites 200
+[debug] [2025-01-14T09:25:34.430Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/gluciobot/sites {"sites":[{"name":"projects/gluciobot/sites/gluciobot","defaultUrl":"https://gluciobot.web.app","appId":"1:505352236961:web:68c8c70b9afaa2e6c365e0","type":"DEFAULT_SITE"}]}
+[debug] [2025-01-14T09:25:34.430Z] Checked if tokens are valid: true, expires at: 1736850326562
+[debug] [2025-01-14T09:25:34.431Z] Checked if tokens are valid: true, expires at: 1736850326562
+[debug] [2025-01-14T09:25:34.431Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:505352236961:web:68c8c70b9afaa2e6c365e0/config [none]
+[debug] [2025-01-14T09:25:34.872Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:505352236961:web:68c8c70b9afaa2e6c365e0/config 200
+[debug] [2025-01-14T09:25:34.872Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:505352236961:web:68c8c70b9afaa2e6c365e0/config {"projectId":"gluciobot","appId":"1:505352236961:web:68c8c70b9afaa2e6c365e0","storageBucket":"gluciobot.firebasestorage.app","apiKey":"AIzaSyAzID9DPONp3kZztJrFd-t0cUprQQKoPN4","authDomain":"gluciobot.firebaseapp.com","messagingSenderId":"505352236961"}
+[info] 
+   Thank you for trying our early preview of Angular support on Firebase Hosting.
+   During the preview, support is best-effort and breaking changes can be expected. Proceed with caution.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/angular
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+

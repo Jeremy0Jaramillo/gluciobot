@@ -119,10 +119,32 @@
 
   .main-content {
     flex: 1;
-    padding: 20px;
+    padding-top: 5px;
+    padding-left: 10px;
     background-color: #ffffff;
-    margin: 20px;
+    margin-top: 20px;
+    margin-left: 20px;
     border-radius: 2%;
+    height: auto;
+
+    .appointments-tab {
+      padding: 20px;
+    
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    
+        label {
+          display: flex;
+          justify-content: space-between;
+          input {
+            flex: 1;
+            margin-left: 10px;
+          }
+        }
+      }
+    }
 
     .historia-clinica {
       margin-top: 20px;
@@ -132,26 +154,111 @@
       }
     
       div {
+        background-color: #F8F8F8;
+        border-radius: 4%;
+        text-align: left;
+        margin-top: 20px;
+        gap: 20px;
         margin-bottom: 15px;
+        padding: 10px;
     
         h4 {
           margin-bottom: 5px;
-          color: #333;
+          color: #168BD9;
         }
     
         p, ul {
           margin-left: 15px;
+          color: #00000096;
         }
       }
-    }    
-
-    .agenda-content {
-      background-color: #F8F8F8;
+    }
+    
+    .profile-container {
       display: flex;
-      gap: 30px;
-      padding: 20px;
-      border-radius: 4%;
-      text-align: justify;
+      gap: 500px;
+
+      img {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        margin-right: 25px;
+      }
+
+      .profile-left{
+        display: flex;
+      }
+
+      .profile-right{
+        gap: 50px;
+        display: flex;
+      }
+    }
+
+    .profile-details{
+      table{
+        background-color: #f0f0f0;
+        
+
+        thead{
+          th{
+            color: #33333382;
+            text-align: justify;
+          }
+        }
+
+        tbody{
+          th{
+            font: bold;
+          }
+        }
+      }
+    }
+
+    
+    .flex-general{
+      display: flex;
+      gap: 80px;
+      
+      .agenda-content {
+        background-color: #F8F8F8;
+        display: flex;
+        padding: 40px;
+        border-radius: 4%;
+        text-align: left;
+        margin-top: 20px;
+        justify-content: space-between;
+        gap: 20px;
+
+        .first{
+          color: #168BD9;
+
+          strong{
+            color: #000000;
+          }
+        }
+
+        .second{
+          font-size: small;
+        }
+
+        .third{
+          background-color: #ffffff;
+          border-radius: 10%;
+          padding: 5px;
+          padding-top: 10px;
+        }
+      }
+  
+      .total-patients {
+        background-color: #F8F8F8;
+        padding-inline: 60px;
+        padding-top: 20px;
+        border-radius: 4%;
+        text-align: center;
+        height: 100px;
+      }
+
     }
 
     table {
