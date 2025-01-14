@@ -1,0 +1,182 @@
+<div class="header">
+  <div class="title">MediHelp</div>
+  <div class="active-tab">{{ activeTab | titlecase }}</div>
+  <div class="user-info">
+    <img src="../../assets/images/istockphoto-2077095666-612x612.jpg" alt="User Image" class="user-image" />
+    <div *ngIf="user">
+      <span>{{ user.name }}</span>
+      <br>
+      <span>{{ user.specialization }}</span>
+    </div>
+    <button class="logout-button" (click)="toggleLogoutOptions()">▼</button>
+    <div *ngIf="showLogoutOptions" class="logout-options">
+      <button (click)="logout()">Logout</button>
+    </div>
+  </div>
+</div>
+
+<div class="dashboard">
+  <div class="side-panel">
+    <div class="tabs">
+      <img src="../../assets/images/squares-2x2.svg" alt="Patient Image" class="patient-image" />
+      <button [class.active]="activeTab === 'general'" (click)="setActiveTab('general')">General</button>
+    </div>
+    <div class="tabs">
+      <img src="../../assets/images/Union.svg" alt="Patient Image" class="patient-image" />
+      <button [class.active]="activeTab === 'pacients'" (click)="setActiveTab('pacients')">Pacientes</button>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <!-- General Tab -->
+    <div *ngIf="activeTab === 'general'" class="general-tab">
+      <h2>Dashboard</h2>
+      <p>Pacientes: {{ totalPatients }}</p>
+      <h3>Agenda</h3>
+      <ul>
+        <tr *ngFor="let appointment of appointments">
+          <div class="agenda-content">
+            <div>
+              <strong>Nombre:</strong> {{ appointment.name }} <br />
+              <strong>Tipo:</strong> {{ appointment.type }} <br />
+            </div>
+            <div>
+              <strong>Resúmen:</strong> {{ appointment.context }} <br />
+            </div>
+            <div>
+              <strong>Fecha:</strong> {{ appointment.date.toDate() | date: 'medium' }}
+            </div>
+          </div>
+        </tr>
+      </ul>
+    </div>
+
+    <!-- Patients Tab -->
+    <div *ngIf="activeTab === 'pacients'" class="pacients-tab">
+      <h2>Lista de Pacientes</h2>
+      <button (click)="openAddPatientForm()">Add New Patient</button>
+      <table>
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Paciente</th>
+            <th>Area</th>
+            <th>Cédula</th>
+            <th>Estado</th>
+            <th>Proxima Cita</th>
+            <th>      </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let patient of patients">
+            <td>{{ patient.date.toDate() | date: 'medium' }}</td>
+            <td>{{ patient.name }} {{ patient.surname }}</td>
+            <td>{{ patient.area }}</td>
+            <td>{{ patient.id }}</td>
+            <td>
+              <select [(ngModel)]="patient.status" (change)="updatePatientStatus(patient)">
+                <option value="En atencion">En atencion</option>
+                <option value="Atendido">Atendido</option>
+              </select>
+            </td>
+            <td>
+              <input type="date" [(ngModel)]="patient.nextAppointment" (change)="updateNextAppointment(patient)" />
+            </td>
+            <td>
+              <button (click)="viewPatientProfile(patient)">Ver Perfil</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf="showAddPatientForm" class="add-patient-form">
+      <h3>Añadir Paciente</h3>
+      <form (ngSubmit)="addNewPatient()">
+        <label>Nombres: <input [(ngModel)]="newPatient.name" name="name" required /></label>
+        <label>Apellidos: <input [(ngModel)]="newPatient.surname" name="name" required /></label>
+        <label>ID: <input [(ngModel)]="newPatient.id" name="id" required /></label>
+        <label>Sex: <input [(ngModel)]="newPatient.sex" name="sex" required /></label>
+        <label>Birthdate: <input [(ngModel)]="newPatient.birthdate" name="birthdate" type="date" required /></label>
+        <label>Area: <input [(ngModel)]="newPatient.area" name="area" required /></label>
+        <label>Email: <input [(ngModel)]="newPatient.email" name="email" required /></label>
+        <label>Phone: <input [(ngModel)]="newPatient.phone" name="phone" required /></label>
+        <label>Address: <input [(ngModel)]="newPatient.address" name="address" required /></label>
+        <button type="submit">Guardar</button>
+        <button type="button" (click)="closeAddPatientForm()">Cancelar</button>
+      </form>
+    </div>
+
+    <!-- Patient Profile Tab -->
+    <div *ngIf="activeTab === 'profile'" class="profile-tab">
+      <h2>Perfil de Paciente</h2>
+      <div class="profile-container">
+        <div class="profile-left">
+          <img src="../../assets/images/istockphoto-1323167284-170667a.jpg" alt="Patient Image" class="patient-image" />
+          <h3>{{ selectedPatient?.name }}</h3>
+        </div>
+        <div class="profile-right">
+          <p><strong>Sexo:</strong> {{ selectedPatient?.sex }}</p>
+          <p><strong>Edad:</strong> {{ calculateAge(selectedPatient?.birthdate) }}</p>
+        </div>
+      </div>
+      <div class="profile-details">
+        <table>
+          <thead>
+            <tr>
+              <th>Cédula</th>
+              <th>Número</th>
+              <th>Dirección</th>
+              <th>Correo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ selectedPatient?.id }}</td>
+              <td>{{ selectedPatient?.phone }}</td>
+              <td>{{ selectedPatient?.address }}</td>
+              <td>{{ selectedPatient?.email }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- Historia Clinica Section -->
+      <div class="historia-clinica">
+        <h3>Historia Clínica</h3>
+        <div class="informacion-general">
+          <h4>Información General</h4>
+          <p><strong>Diagnóstico:</strong> {{ medicalRecord?.diagnostico }}</p>
+          <p><strong>Código CIE:</strong> {{ medicalRecord?.codigo_cie }}</p>
+        </div>
+        <div class="receta-indicaciones">
+          <h4>Receta e Indicaciones</h4>
+          <ul>
+            <li *ngFor="let medicamento of medicalRecord?.medicamentos">
+              <strong>{{ medicamento.nombre }}</strong> ({{ medicamento.tipo }}) - {{ medicamento.cantidad }}
+            </li>
+          </ul>
+          <p>{{ medicalRecord?.indicaciones }}</p>
+        </div>
+        <div class="opciones-quirurgicas">
+          <h4>Opciones Quirúrgicas</h4>
+          <p>{{ medicalRecord?.opciones_quirurgicas }}</p>
+        </div>
+      </div>
+    </div>
+    
+        <!-- File Upload (to be fixed)-->
+         <!-- 
+        <div>
+          <input type="file" (change)="onFileSelected($event)" />
+          <button (click)="uploadFile()">Subir</button>
+          <button *ngIf="extractedData" (click)="saveExtractedData()">Guardar</button>
+        </div>
+        <div *ngIf="extractedData">
+          <h3>Extracted Data:</h3>
+          <pre>{{ extractedData | json }}</pre>
+        </div>        
+      </div>
+    </div>
+  </div>
+</div>
+-->

@@ -6,8 +6,27 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="stylesheet" href="styles-5INURTSO.css"></head>
+<link rel="stylesheet" href="styles-5INURTSO.css"><link rel="modulepreload" href="chunk-5I67OYDG.js"></head>
 <body>
   <app-root></app-root>
-<script src="polyfills-FFHMD2TL.js" type="module"></script><script src="main-A6EKAMFQ.js" type="module"></script></body>
+  <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
+<script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
+<df-messenger location="us-central1" project-id="gluciobot" agent-id="f0e7d42a-182f-40a9-84ca-5f34bcb05a74" language-code="es" max-query-length="-1">
+  <df-messenger-chat-bubble chat-title="Gluciobot">
+  </df-messenger-chat-bubble>
+</df-messenger>
+<style>
+  df-messenger {
+    z-index: 999;
+    position: fixed;
+    --df-messenger-font-color: #000;
+    --df-messenger-font-family: Google Sans;
+    --df-messenger-chat-background: #f3f6fc;
+    --df-messenger-message-user-background: #d3e3fd;
+    --df-messenger-message-bot-background: #fff;
+    bottom: 16px;
+    right: 16px;
+  }
+</style>
+<script src="polyfills-FFHMD2TL.js" type="module"></script><script src="main-7OIKST7O.js" type="module"></script></body>
 </html>

@@ -1,0 +1,21 @@
+<div class="login-container">
+  <div class="form-container">
+    <!-- Login Form -->
+    <form (ngSubmit)="login(email.value, password.value)">
+      <input type="email" #email placeholder="Email" required>
+      <input type="password" #password placeholder="Contraseña" required>
+      <button type="submit">Iniciar sesión</button>
+    </form>
+  </div>
+
+  <div class="form-container">
+    <!-- Registration Form -->
+    <form (ngSubmit)="register(regEmail.value, regPassword.value, regName.value, regSpecialization.value)">
+      <input type="email" #regEmail placeholder="Email" required>
+      <input type="password" #regPassword placeholder="Contraseña" required>
+      <input type="text" #regName placeholder="Nombre" required>
+      <input type="text" #regSpecialization placeholder="Especialización" required>
+      <button type="submit">Registrarse</button>
+    </form>
+  </div>
+</div>

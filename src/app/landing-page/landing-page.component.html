@@ -1,14 +1,64 @@
 <div class="header">
-    <div class="logo">MediHelp</div>
-    <nav class="nav-links">
-      <button (click)="('inicio')">Inicio</button>
-      <button (click)="('medicos')">Medicos</button>
-      <button (click)="('gluciobot')">GlucioBot</button>
-      <button (click)="('nosotros')">Nosotros</button>
-    </nav>
-  </div>
+  <div class="logo">MediHelp</div>
+  <nav class="nav-links">
+    <button (click)="navigateTo('inicio')">Inicio</button>
+    <button (click)="navigateTo('medicos')">Medicos</button>
+    <button (click)="navigateTo('gluciobot')">GlucioBot</button>
+    <button (click)="navigateTo('nosotros')">Nosotros</button>
+  </nav>
+</div>
+
   <div class="landing-content">
-    <h1>Bienvenido a MediHelp</h1>
-    <p>Centro de Salud Integral.</p>
+    <div>
+      <h1>Bienvenido a MediHelp</h1>
+      <p>Centro de Salud Integral.</p>
+      <button (click)="navigateTo('login')">Login</button>
+    </div>
+    <div>
+      <img src="../../assets/images/trafalgar-header illustration 1.svg">
+    </div>
+  </div>
+
+  <div class="landing-content2">
+    <div>
+      <img src="../../assets/images/rb_4114 1.svg">
+    </div>
+    <div>
+      <h2>Conoce a Gluciobot</h2>
+      <hr>
+      <p>Glucio, es un asistente virtual que te ayudara con el 
+        agendamiento de citas, 
+        historial médico, recomendaciones e 
+        información para prevenir enfermedades y mucho más.</p>
+      <button (click)="('glucio')">Preguntale a Glucio</button>
+    </div>
+  </div>
+  
+  <div class="landing-content3">
+    <h2>Nuestros Servicios</h2>
+    <hr>
+    <p>Nosotros te proveemos las mejores opciones. Nos ajustamos a tus necesidades de salud 
+      para asegurarnos de que te trates con doctores altamente calificados. Puedes consultar 
+      con nosotros el tipo de servicio que le corresponda para mejorar su salud.</p>
+  </div>
+
+  <div class="landing-content2">
+    <div class="card">
+      <img src="../../assets/images/Group.svg">
+      <h3>Buscar Doctores</h3>
+      <p>Elige tu doctor o especialidad y te mostraremos nuestro catalogo.</p>
+    </div>
+
+    <div class="card">
+      <img src="../../assets/images/Frame.svg">
+      <h3>Farmacias cercanas</h3>
+      <p>Compra tu medicina en farmacias cerca de ti.</p>
+    </div>
+
+    <div class="card">
+      <img src="../../assets/images/Frame.svg">
+      <h3>Agendamiento de citas</h3>
+      <p>Puedes realizar el agendamiento de citas a través de GlucioBot.</p>
+    </div>
   </div>
   

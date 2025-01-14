@@ -33,8 +33,11 @@
 }
 
 .landing-content {
+  display: flex;
   text-align: left;
   margin-top: 50px;
+  margin: 100px;
+  justify-content: space-between;
 
   h1 {
     font-size: 2.5rem;
@@ -46,4 +49,76 @@
     margin-top: 10px;
     color: rgb(98, 98, 98);
   }
+
+  button {
+    background-color: #168BD9;
+    border-radius: 30%;
+    padding: 10px 20px;
+    color: #ffffff;
+    border-color: #ffffff;
+  }
 }
+
+.landing-content2 {
+  display: flex;
+  text-align: left;
+  margin: 130px;
+
+  h1 {
+    font-size: 2.5rem;
+    color: #000000;
+  }
+
+  p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    color: rgb(98, 98, 98);
+  }
+
+  button {
+    color: #168BD9;
+    border-radius: 30%;
+    padding: 10px 20px;
+    border-color: #168BD9;
+    background-color: #ffffff;
+  }
+  
+  .card {
+    text-align: left;
+    margin: 50px;
+    box-shadow: #000000;
+    border-radius: 10%;
+  
+    h3 {
+      font-size: 1.7rem;
+      color: #000000;
+    }
+  
+  }
+}
+
+.landing-content3 {
+  text-align: center;
+  margin: 130px;
+
+  h1 {
+    font-size: 2.5rem;
+    color: #000000;
+  }
+
+  p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    color: rgb(98, 98, 98);
+  }
+
+  button {
+    color: #168BD9;
+    border-radius: 30%;
+    padding: 20%;
+    border-color: #168BD9;
+    fill: #ffffff;
+
+  }
+}
+
