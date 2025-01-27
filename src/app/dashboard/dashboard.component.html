@@ -17,21 +17,21 @@
 
 <div class="dashboard">
   <div class="side-panel">
-    <div class="tabs">
-      <img src="../../assets/images/squares-2x2.svg" alt="Patient Image" class="patient-image" />
-      <button [class.active]="activeTab === 'general'" (click)="setActiveTab('general')">General</button>
+    <div class="tabs" (click)="setActiveTab('general')" >
+      <img src="../../assets/images/squares-2x2.svg" alt="Patient Image" class="patient-image"  />
+      <button [class.active]="activeTab === 'general'">General</button>
     </div>
-    <div class="tabs">
+    <div class="tabs" (click)="setActiveTab('pacients')" >
       <img src="../../assets/images/Union.svg" alt="Patient Image" class="patient-image" />
-      <button [class.active]="activeTab === 'pacients'" (click)="setActiveTab('pacients')">Pacientes</button>
+      <button [class.active]="activeTab === 'pacients'">Pacientes</button>
     </div>
   </div>
 
   <div class="main-content">
     <!-- General Tab -->
     <div *ngIf="activeTab === 'general'" class="general-tab">
-      <h3>Agenda</h3>
-      <button (click)="setActiveTab('appointments')"><strong>+</strong></button>
+      <h2>Agenda</h2>
+      <button (click)="openAddAppointmentForm()"><strong>+</strong></button>
       <div class="flex-general">
         <ul>
           <tr *ngFor="let appointment of appointments">
@@ -58,42 +58,47 @@
     </div>
 
     <!-- Appointment Form -->
-    <div *ngIf="activeTab === 'appointments'" class="appointments-tab">
-      <h2>Manage Appointments</h2>
+    <div *ngIf="showAddAppointmentForm">
+      <div class="modal-overlay" (click)="closeAddAppointmentForm()"></div>
+      <div class="modal">
+        <div class="modal-content">
+          <h3>Añadir Cita</h3>
+          <form (ngSubmit)="addAppointment()">
+            <label for="name">Nombres:</label>
+            <input id="name" [(ngModel)]="newAppointment.name" name="name" required />
     
-      <!-- Appointment Form -->
-      <form (ngSubmit)="addAppointment()">
-        <label>Nombres: <input [(ngModel)]="newAppointment.name" name="name" required /></label>
-        <label>Apellidos: <input [(ngModel)]="newAppointment.surname" name="surname" required /></label>
-        <label>Cédula: <input [(ngModel)]="newAppointment.id" name="id" required /></label>
-        <label>Context: <input [(ngModel)]="newAppointment.context" name="context" required /></label>
-        <label>Email: <input [(ngModel)]="newAppointment.email" name="email" required /></label>
-        <label>Date: <input [(ngModel)]="newAppointment.date" name="date" type="date" required /></label>
-        <button type="submit">Add Appointment</button>
-      </form>
-    </div>
-
-    <!-- Appointment Form Modal -->
-    <div *ngIf="activeTab === 'showAddAppointmentForm'" class="modal">
-      <div class="modal-content">
-        <h3>Add Appointment</h3>
-        <form (ngSubmit)="addAppointment()">
-          <label>Name: <input [(ngModel)]="newAppointment.name" name="name" required /></label>
-          <label>Surname: <input [(ngModel)]="newAppointment.surname" name="surname" required /></label>
-          <label>ID: <input [(ngModel)]="newAppointment.id" name="id" required /></label>
-          <label>Type: <input [(ngModel)]="newAppointment.type" name="type" required /></label>
-          <label>Context: <input [(ngModel)]="newAppointment.context" name="context" required /></label>
-          <label>Email: <input [(ngModel)]="newAppointment.email" name="email" required /></label>
-          <button type="submit">Save</button>
-          <button type="button" (click)="closeAddAppointmentForm()">Cancel</button>
-        </form>
+            <label for="surname">Apellidos:</label>
+            <input id="surname" [(ngModel)]="newAppointment.surname" name="surname" required />
+    
+            <label for="id">Cédula:</label>
+            <input id="id" [(ngModel)]="newAppointment.id" name="id" required />
+    
+            <label for="type">Tipo:</label>
+            <input id="type" [(ngModel)]="newAppointment.type" name="type" required />
+    
+            <label for="context">Contexto:</label>
+            <textarea id="context" [(ngModel)]="newAppointment.context" name="context" required></textarea>
+    
+            <label for="email">Email:</label>
+            <input id="email" [(ngModel)]="newAppointment.email" name="email" type="email" required />
+    
+            <label for="date">Fecha:</label>
+            <input id="date" [(ngModel)]="newAppointment.date" name="date" type="date" required />
+    
+            <div class="button-group">
+              <button type="submit" class="btn-primary">Guardar</button>
+              <button type="button" class="btn-secondary" (click)="closeAddAppointmentForm()">Cancelar</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
+    
 
     <!-- Patients Tab -->
     <div *ngIf="activeTab === 'pacients'" class="pacients-tab">
       <h2>Lista de Pacientes</h2>
-      <button (click)="openAddPatientForm()">Add New Patient</button>
+      <button (click)="openAddPatientForm()"><strong>+</strong></button>
       <table>
         <thead>
           <tr>
@@ -129,22 +134,48 @@
       </table>
     </div>
 
-    <div *ngIf="showAddPatientForm" class="add-patient-form">
-      <h3>Añadir Paciente</h3>
-      <form (ngSubmit)="addNewPatient()">
-        <label>Nombres: <input [(ngModel)]="newPatient.name" name="name" required /></label>
-        <label>Apellidos: <input [(ngModel)]="newPatient.surname" name="name" required /></label>
-        <label>ID: <input [(ngModel)]="newPatient.id" name="id" required /></label>
-        <label>Sex: <input [(ngModel)]="newPatient.sex" name="sex" required /></label>
-        <label>Birthdate: <input [(ngModel)]="newPatient.birthdate" name="birthdate" type="date" required /></label>
-        <label>Area: <input [(ngModel)]="newPatient.area" name="area" required /></label>
-        <label>Email: <input [(ngModel)]="newPatient.email" name="email" required /></label>
-        <label>Phone: <input [(ngModel)]="newPatient.phone" name="phone" required /></label>
-        <label>Address: <input [(ngModel)]="newPatient.address" name="address" required /></label>
-        <button type="submit">Guardar</button>
-        <button type="button" (click)="closeAddPatientForm()">Cancelar</button>
-      </form>
+    <div *ngIf="showAddPatientForm">
+      <div class="modal-overlay" (click)="closeAddPatientForm()"></div>
+      <div class="modal">
+        <div class="modal-content">
+          <h3>Añadir Paciente</h3>
+          <form (ngSubmit)="addNewPatient()">
+            <label for="patient-name">Nombres:</label>
+            <input id="patient-name" [(ngModel)]="newPatient.name" name="name" required />
+    
+            <label for="patient-surname">Apellidos:</label>
+            <input id="patient-surname" [(ngModel)]="newPatient.surname" name="surname" required />
+    
+            <label for="patient-id">Cédula:</label>
+            <input id="patient-id" [(ngModel)]="newPatient.id" name="id" required />
+    
+            <label for="patient-sex">Sexo:</label>
+            <input id="patient-sex" [(ngModel)]="newPatient.sex" name="sex" required />
+    
+            <label for="patient-birthdate">Fecha de Nacimiento:</label>
+            <input id="patient-birthdate" [(ngModel)]="newPatient.birthdate" name="birthdate" type="date" required />
+    
+            <label for="patient-area">Área:</label>
+            <input id="patient-area" [(ngModel)]="newPatient.area" name="area" required />
+    
+            <label for="patient-email">Correo Electrónico:</label>
+            <input id="patient-email" [(ngModel)]="newPatient.email" name="email" type="email" required />
+    
+            <label for="patient-phone">Teléfono:</label>
+            <input id="patient-phone" [(ngModel)]="newPatient.phone" name="phone" required />
+    
+            <label for="patient-address">Dirección:</label>
+            <textarea id="patient-address" [(ngModel)]="newPatient.address" name="address" required></textarea>
+    
+            <div class="button-group">
+              <button type="submit" class="btn-primary">Guardar</button>
+              <button type="button" class="btn-secondary" (click)="closeAddPatientForm()">Cancelar</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
+    
 
     <!-- Patient Profile Tab -->
     <div *ngIf="activeTab === 'profile'" class="profile-tab">
@@ -203,7 +234,7 @@
       </div>
     </div>
     
-        <!-- File Upload (to be fixed)-->
+        <!-- File Upload (Cloud Run Service / Outdated)-->
          <!-- 
         <div>
           <input type="file" (change)="onFileSelected($event)" />

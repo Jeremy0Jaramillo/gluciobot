@@ -1,20 +1,24 @@
+/* Updated CSS for the Dashboard Component */
 .header {
-  display: flex; 
+  display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background-color: #ffffff;
-  color: rgb(0, 0, 0);
-  font-family: system-ui;
-
+  background-color: #f5f5f5;
+  color: #333;
+  font-family: 'Arial', sans-serif;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
   .title {
     font-size: 24px;
     font-weight: bold;
+    color: #168BD9;
   }
 
   .active-tab {
     font-size: 18px;
     font-weight: bold;
+    color: #555;
   }
 
   .user-info {
@@ -23,20 +27,23 @@
     position: relative;
 
     .user-image {
-      width: 40px;
-      height: 40px;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
-      margin-right: 10px;
+      margin-right: 15px;
+      border: 2px solid #168BD9;
     }
 
     span {
+      font-size: 14px;
+      color: #333;
       margin-right: 10px;
     }
 
     .logout-button {
       background: none;
       border: none;
-      color: rgb(0, 0, 0);
+      color: #168BD9;
       cursor: pointer;
       font-size: 16px;
     }
@@ -45,18 +52,19 @@
       position: absolute;
       top: 100%;
       right: 0;
-      background-color: white;
-      color: black;
+      background-color: #fff;
+      color: #333;
       border: 1px solid #ccc;
-      padding: 5px 10px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 
       button {
         background: none;
         border: none;
-        color: #000000;
+        color: #168BD9;
         cursor: pointer;
         font-size: 14px;
+        text-align: left;
 
         &:hover {
           text-decoration: underline;
@@ -66,214 +74,332 @@
   }
 }
 
-
 .dashboard {
   display: flex;
   height: 100vh;
-  background-color: #F8F8F8;
-  font-family: system-ui;
+  background-color: #e9f7fc;
+  font-family: 'Arial', sans-serif;
 
   .side-panel {
-    width: 200px;
+    width: 220px;
     background-color: #ffffff;
-    color: rgb(170, 170, 170);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 15px;
+    border-right: 1px solid #ccc;
+    padding: 20px;
 
     .tabs {
       display: flex;
+      align-items: center;
       cursor: pointer;
+      padding: 10px 15px;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #2cd8ff35;
+      }
+
+      &.active {
+        background-color: #168BD9;
+        color: #fff;
+      }
 
       img {
-        width: 20px;
-        height: 20px;
-
-        &.active {
-          background-color: #2cd8ff5f;
-          color: #168BD9;
-        }
+        width: 25px;
+        height: 25px;
+        margin-right: 10px;
       }
 
       button {
         background: none;
         border: none;
-        color: rgb(170, 170, 170);
-        padding: 10px;
-        text-align: left;
-        width: 200px;
-
-        &.active {
-          background-color: #2cd8ff5f;
-          font-weight: bold;
-          color: #168BD9;
-        }
-      }
-
-      &:hover {
-        background-color: #2cd8ff35;
+        font-size: 16px;
+        font-weight: bold;
+        color: inherit;
+        cursor: pointer;
       }
     }
   }
 
   .main-content {
     flex: 1;
-    padding-top: 5px;
-    padding-left: 10px;
-    background-color: #ffffff;
-    margin-top: 20px;
-    margin-left: 20px;
-    border-radius: 2%;
-    height: auto;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 
-    .appointments-tab {
-      padding: 20px;
-    
-      form {
+    /* Overlay to darken the background */
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+        z-index: 999; /* Below the modal but above other content */
+      }
+
+      /* Modal styles (unchanged) */
+      .modal {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+        max-width: 600px;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+        z-index: 1000; /* Above the overlay */
+        padding: 20px;
+      }
+
+      .modal-content {
         display: flex;
         flex-direction: column;
+        gap: 16px;
+      }
+
+      label {
+        font-size: 1rem;
+        font-weight: bold;
+        margin-bottom: 8px;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 8px;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
+
+      .button-group {
+        display: flex;
+        justify-content: flex-end;
         gap: 10px;
-    
-        label {
-          display: flex;
-          justify-content: space-between;
-          input {
-            flex: 1;
-            margin-left: 10px;
-          }
-        }
       }
-    }
 
-    .historia-clinica {
-      margin-top: 20px;
-    
-      h3 {
-        margin-bottom: 10px;
+      .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 4px;
+        cursor: pointer;
       }
+
+      .btn-secondary {
+        background-color: #6c757d;
+        color: #fff;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        opacity: 0.9;
+      }
+
     
-      div {
-        background-color: #F8F8F8;
-        border-radius: 4%;
-        text-align: left;
-        margin-top: 20px;
+
+    .general-tab {
+      h2 {
+        color: #168BD9;
+        margin-bottom: 20px;
+      }
+
+      .flex-general {
+        display: flex;
         gap: 20px;
-        margin-bottom: 15px;
-        padding: 10px;
-    
-        h4 {
-          margin-bottom: 5px;
-          color: #168BD9;
-        }
-    
-        p, ul {
-          margin-left: 15px;
-          color: #00000096;
-        }
-      }
-    }
-    
-    .profile-container {
-      display: flex;
-      gap: 500px;
-
-      img {
-        width: 70px;
-        height: 70px;
-        border-radius: 50%;
-        margin-right: 25px;
-      }
-
-      .profile-left{
-        display: flex;
-      }
-
-      .profile-right{
-        gap: 50px;
-        display: flex;
-      }
-    }
-
-    .profile-details{
-      table{
-        background-color: #f0f0f0;
         
 
-        thead{
-          th{
-            color: #33333382;
-            text-align: justify;
+        .agenda-content {
+          display: flex;
+          background-color: #f9f9f9;
+          border-radius: 8px;
+          padding: 15px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          gap: 20px;
+          justify-content: space-between;
+          margin-bottom: 20px;
+
+          .first {
+            font-size: 14px;
+            color: #168BD9;
+
+            strong {
+              color: #000;
+              font-size: 16px;
+            }
+          }
+
+          .second{
+            font-size: small;
+            width: 200px;
+            text-align: left;
+          }
+
+          .third {
+            display: flex;
+            align-items: center;
+            gap: 5px;
           }
         }
 
-        tbody{
-          th{
-            font: bold;
+        .total-patients {
+          flex: 1;
+          background-color: #f9f9f9;
+          text-align: center;
+          padding: 15px;
+          border-radius: 8px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          height: 80px;
+
+          img {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 10px;
+          }
+
+          p {
+            font-size: medium;
+            color: #168BD9;
+            font-weight: bold;
           }
         }
       }
     }
 
-    
-    .flex-general{
-      display: flex;
-      gap: 80px;
-      
-      .agenda-content {
-        background-color: #F8F8F8;
+    .pacients-tab {
+      h2 {
+        color: #168BD9;
+        margin-bottom: 20px;
+      }
+
+      button{
+        margin: 20px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+
+        thead {
+          background-color: #f5f5f5;
+
+          th {
+            font-size: 14px;
+            color: #168BD9;
+            text-align: left;
+            padding: 10px;
+          }
+        }
+
+        tbody {
+          tr {
+            &:hover {
+              background-color: #f0f8ff;
+            }
+
+            td {
+              padding: 10px;
+              font-size: 14px;
+              color: #333;
+            }
+          }
+        }
+      }
+    }
+
+    .profile-tab {
+      .profile-container {
         display: flex;
-        padding: 40px;
-        border-radius: 4%;
-        text-align: left;
-        margin-top: 20px;
         justify-content: space-between;
-        gap: 20px;
+        margin-bottom: 20px;
 
-        .first{
-          color: #168BD9;
+        .profile-left {
+          text-align: center;
+          display: flex;
+          gap: 20px;
+          
+          h3 {
+            margin-top: 35px;
+          }
 
-          strong{
-            color: #000000;
+          img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            margin: 10px;
           }
         }
 
-        .second{
-          font-size: small;
+        .profile-right {
+          display: flex;
+          font-size: 14px;
+          color: #555;
+          gap: 40px;
+          margin: 20px;
+
+          p {
+            margin-top: 20px;
+          }
+        }
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        justify-content: space-between;
+        margin-bottom: 20px;
+
+        thead {
+          background-color: #FAFBFC;
+
+          th {
+            font-size: 14px;
+            color: #94A3B8;
+            text-align: center;
+            padding: 10px;
+          }
         }
 
-        .third{
-          background-color: #ffffff;
-          border-radius: 10%;
-          padding: 5px;
-          padding-top: 10px;
+        tbody {
+          tr {
+            td {
+              padding: 10px;
+              font-size: 14px;
+              color: #333;
+              background-color: #FAFBFC;
+              text-align: center;
+            }
+          }
         }
       }
-  
-      .total-patients {
-        background-color: #F8F8F8;
-        padding-inline: 60px;
-        padding-top: 20px;
-        border-radius: 4%;
-        text-align: center;
-        height: 100px;
-      }
 
-    }
+      .historia-clinica {
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 15px;
 
-      th, td {
-        border: 1px solid #ccc;
-        padding: 10px;
-        text-align: left;
-      }
+        h3 {
+          color: #168BD9;
+          margin-bottom: 10px;
+        }
 
-      th {
-        background-color: #f5f5f5;
+        p, ul {
+          font-size: 14px;
+          color: #555;
+        }
       }
     }
   }
