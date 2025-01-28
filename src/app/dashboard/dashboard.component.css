@@ -8,7 +8,7 @@
   color: #333;
   font-family: 'Arial', sans-serif;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  
+
   .title {
     font-size: 24px;
     font-weight: bold;
@@ -151,17 +151,24 @@
         border-radius: 8px;
         z-index: 1000; /* Above the overlay */
         padding: 20px;
+        overflow-y: auto; /* Habilitar scroll cuando sea necesario */
+        max-height: 80vh; /* Ajustar el alto máximo según el tamaño de la ventana */
       }
 
       .modal-content {
         display: flex;
         flex-direction: column;
         gap: 16px;
+        padding: 20px;
       }
+
+    .modal-content h3{
+      color: #168BD9;
+    }
 
       label {
         font-size: 1rem;
-        font-weight: bold;
+        font-weight: normal;
         margin-bottom: 8px;
       }
 
@@ -170,8 +177,10 @@
         width: 100%;
         padding: 8px;
         font-size: 1rem;
-        border: 1px solid #ccc;
+        border: 1px solid #168BD9;
         border-radius: 4px;
+        margin-top: 10px;
+        margin-bottom: 10px;
       }
 
       textarea {
@@ -207,7 +216,7 @@
         opacity: 0.9;
       }
 
-    
+
 
     .general-tab {
       h2 {
@@ -218,7 +227,7 @@
       .flex-general {
         display: flex;
         gap: 20px;
-        
+
 
         .agenda-content {
           display: flex;
@@ -328,7 +337,7 @@
           text-align: center;
           display: flex;
           gap: 20px;
-          
+
           h3 {
             margin-top: 35px;
           }
@@ -402,5 +411,31 @@
         }
       }
     }
+  }
+  .a{
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #168BD9;
+    color: white;
+    cursor: pointer;
+    margin-left: 40px;
+  }
+
+  .sb{
+    border-radius: 8px;
+    padding: 5px;
+    border: solid #168BD9 1px;
+    cursor: pointer;
+  }
+
+  .b{
+    border-radius: 10px;
+    padding: 8px;
+    color: white;
+    background-color: #168BD9;
+    cursor: pointer;
+  }
+  .dc{
+    cursor: pointer;
   }
 }
